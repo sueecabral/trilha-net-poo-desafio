@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
-
+using System;        
+        
 namespace DesafioPOO.Models
 {
     public abstract class Smartphone
@@ -9,24 +10,80 @@ namespace DesafioPOO.Models
         private string Imei { get; set; }
         private int Memoria { get; set; }
        
-        public Smartphone(string numero, string modelo, string imei, int memoria)
+        public Smartphone(string modelo, string imei, int memoria)
         {
-            Numero = numero;
+        
+            //Numero = numero;
             Modelo = modelo;
             Imei = imei;
-            Memoria = memoria;
+            Memoria = memoria;            
+        
         }
 
-        public void Ligar()
+        public void Ligar(string numero)
         {
-            Console.WriteLine("Ligando...");
+            try
+            {
+                if (numero != "" )
+                {
+                   Console.WriteLine("Ligando...");
+                }
+                else
+                {
+                    throw new ArgumentNullException("Número de celular não pode ser nulo ou vazio.");
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                //Environment.Exit(1);
+                
+             }                       
+                              
         }
 
-        public void ReceberLigacao()
+        public void ReceberLigacao(string numero)
         {
-            Console.WriteLine("Recebendo ligação...");
+             try
+            {
+                if (numero != "" )
+                {
+                   Console.WriteLine("Recebendo ligação...");
+                }
+                else
+                {
+                    throw new ArgumentNullException("Número de celular não pode ser nulo ou vazio.");
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                //Environment.Exit(1);
+                
+             }                       
+            
         }
 
-        public abstract void InstalarAplicativo(string nomeApp);
+        public virtual void InstalarAplicativo(string numero, string nomeApp)
+        {
+             try
+            {
+                if (numero != "" )
+                {
+                   Console.WriteLine($"Instalando aplicativo {nomeApp} no celular.");
+                }
+                else
+                {
+                    throw new ArgumentNullException("O aplicativo não pode ser instalado. Número nulo ou vazio.");
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                //Environment.Exit(1);
+            }
+        }
+        
     }
 }
+
